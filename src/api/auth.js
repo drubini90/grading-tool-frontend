@@ -1,5 +1,3 @@
-import request from "./request";
-
 const { NODE_ENV } = process.env;
 const BASE_URL = NODE_ENV === "development" ? "http://localhost:5000" : "tbd";
 
@@ -26,5 +24,3 @@ export const signup = async user => {
   const json = await response.json();
   return json;
 };
-
-export const profile = () => request("/api/profile");

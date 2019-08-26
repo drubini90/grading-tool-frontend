@@ -2,7 +2,12 @@ import React from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-const AuthenticatedLinks = ({ currentUserId, logoutUser, history }) => {
+const AuthenticatedLinks = ({
+  currentUserId,
+  logoutUser,
+  history,
+  userName
+}) => {
   const logout = () => {
     logoutUser();
     history.push("/login");
@@ -34,6 +39,7 @@ const AuthenticatedLinks = ({ currentUserId, logoutUser, history }) => {
           Logout
         </button>
       </li>
+      <li className="nav-item">Welcome {userName} !!!</li>
     </ul>
   );
 };

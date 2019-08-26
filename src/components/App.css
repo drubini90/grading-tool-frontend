@@ -2,3 +2,8 @@
   width: 70px;
   height: 40px;
 }
+.error-message {
+  background-color: #ff7272;
+  color: white;
+  padding: 1em;
+}

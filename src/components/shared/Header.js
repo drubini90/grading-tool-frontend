@@ -13,7 +13,7 @@ class Header extends Component {
             src={home}
             className="d-inline-block align-top logo"
           />
-          {" GRADING TOOL "}
+          {" ASSIGNMENT TRACKER "}
         </Navbar.Brand>
       </Navbar>
     );

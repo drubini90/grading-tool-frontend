@@ -1,5 +1,5 @@
-const APPLICATION_LOCAL_STORAGE_KEY = "journal_app";
-export const setToken = ({ token }) => {
+const APPLICATION_LOCAL_STORAGE_KEY = "grading_app";
+export const setToken = token => {
   window.localStorage.setItem(APPLICATION_LOCAL_STORAGE_KEY, token);
 };
 

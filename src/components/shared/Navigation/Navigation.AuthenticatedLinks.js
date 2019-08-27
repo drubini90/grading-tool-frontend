@@ -17,14 +17,14 @@ const AuthenticatedLinks = ({
     <ul className="nav justify-content-end">
       {currentUserId ? (
         <li className="nav-item">
-          <Link className="nav-link" to={`/users/${currentUserId}/edit`}>
-            Username
+          <Link className="nav-link" to={`/students`}>
+            All Students
           </Link>
         </li>
       ) : (
         <li />
       )}
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <Link className="nav-link" to="/users">
           All Users
         </Link>
@@ -33,7 +33,7 @@ const AuthenticatedLinks = ({
         <Link className="nav-link" to={`/users/${currentUserId}/posts/new`}>
           Create a New Post
         </Link>
-      </li>
+      </li> */}
       <li className="nav-item">
         <button className="btn btn-link" onClick={logout}>
           Logout

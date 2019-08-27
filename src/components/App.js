@@ -11,11 +11,13 @@ import Home from "./shared/Home";
 import { login, signup } from "../api/auth";
 import PageError from "./shared/PageError";
 import SignupForm from "./auth/SignupForm";
+import { getAllStudents } from "../api/students";
 
 // import Signup from "./auth/SignupForm";
 
 // import * as auth from "../api/auth";
 import * as token from "../helpers/local-storage";
+import Students from "./students/Students";
 
 class App extends React.Component {
   constructor() {
@@ -27,7 +29,8 @@ class App extends React.Component {
       email: null,
       password: null,
       erroMessage: null,
-      userName: null
+      userName: null,
+      studentsList: null
     };
 
     this.logoutUser = this.logoutUser.bind(this);
@@ -48,6 +51,10 @@ class App extends React.Component {
     });
   };
 
+  getStudentsInfo = () => {
+    getAllStudents().then(students => {});
+  };
+
   submitLogin = async e => {
     e.preventDefault();
     const user = {
@@ -57,11 +64,15 @@ class App extends React.Component {
     const result = await login(user);
     if (result.token) {
       token.setToken(result.token);
+      const studentsList = await getAllStudents();
+
       this.setState({
         currentUserId: result.user_info._id,
         isAdmin: result.user_info.isAdmin,
-        userName: result.user_info.first_name
+        userName: result.user_info.first_name,
+        studentsList: studentsList.response
       });
+      return <Redirect to="/students"></Redirect>;
     } else {
       this.setState({
         errorMessage: result.message
@@ -92,7 +103,8 @@ class App extends React.Component {
       isAdmin,
       loading,
       errorMessage,
-      userName
+      userName,
+      studentsList
     } = this.state;
     if (loading) return <span />;
     return (
@@ -110,6 +122,7 @@ class App extends React.Component {
           isAdmin={isAdmin}
           setInputValue={this.setInputValue}
           submitLogin={this.submitLogin}
+          studentsList={studentsList}
         />
         <Switch>
           <Route
@@ -122,6 +135,13 @@ class App extends React.Component {
                   setInputValue={this.setInputValue}
                 />
               );
+            }}
+          />
+          <Route
+            path="/students"
+            exact
+            component={() => {
+              return <Students studentsList={studentsList} />;
             }}
           />
         </Switch>

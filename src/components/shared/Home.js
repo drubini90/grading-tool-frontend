@@ -5,22 +5,15 @@ import Students from "../students/Students";
 
 class Home extends Component {
   render() {
-    const {
-      currentUserId,
-      isAdmin,
-      submitLogin,
-      setInputValue,
-      studentsList
-    } = this.props;
+    const { loggedInUser, submitLogin, setInputValue } = this.props;
 
     return (
       <section className="bg-light border-bottom mb-4">
         <div className="container">
-          {currentUserId ? (
-            isAdmin ? (
+          {loggedInUser.id ? (
+            loggedInUser.isAdmin ? (
               <div>Student !!!</div>
             ) : (
-              // <Students studentsList={studentsList}></Students>
               <div>Assignments !!!</div>
             )
           ) : (
@@ -36,7 +29,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  currentUserId: PropTypes.string,
+  loggedInUser: PropTypes.object.isRequired,
   isAdmin: PropTypes.bool,
   submitLogin: PropTypes.func,
   setInputValue: PropTypes.func,

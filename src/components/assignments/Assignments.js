@@ -7,7 +7,7 @@ class Assignments extends Component {
   render() {
     const { assignments } = this.props;
     const assignmentsList = assignments.map((data, id) => {
-      return <Assignment title={data.title} />;
+      return <Assignment title={data.title} key={id} />;
     });
     return <Container>{assignmentsList}</Container>;
   }

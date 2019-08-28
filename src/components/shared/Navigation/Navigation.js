@@ -1,35 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import AuthenticatedLinks from "./Navigation.AuthenticatedLinks";
+import AdminLinks from "./Navigation.AdminLinks";
+import StudentLinks from "./Navigation.StudentLinks";
+
 import UnauthenticatedLinks from "./Navigation.UnauthenticatedLinks";
 
-// export default ({ currentUserId, logoutUser, userName }) => (
-//   <section className="bg-light border-bottom mb-4">
-//     <div className="container">
-//       {currentUserId ? (
-//         <AuthenticatedLinks
-//           currentUserId={currentUserId}
-//           logoutUser={logoutUser}
-//           userName={userName}
-//         />
-//       ) : (
-//         <UnauthenticatedLinks />
-//       )}
-//     </div>
-//   </section>
-// );
 const Navigation = props => {
-  const { currentUserId, logoutUser, userName } = props;
+  const { loggedInUser, logoutUser } = props;
   return (
     <section className="bg-light border-bottom mb-4">
       <div className="container">
-        {currentUserId ? (
-          <AuthenticatedLinks
-            currentUserId={currentUserId}
-            logoutUser={logoutUser}
-            userName={userName}
-          />
+        {loggedInUser.id ? (
+          loggedInUser.isAdmin ? (
+            <AdminLinks loggedInUser={loggedInUser} logoutUser={logoutUser} />
+          ) : (
+            <StudentLinks loggedInUser={loggedInUser} logoutUser={logoutUser} />
+          )
         ) : (
           <UnauthenticatedLinks />
         )}
@@ -38,9 +25,8 @@ const Navigation = props => {
   );
 };
 Navigation.propTypes = {
-  currentUserId: PropTypes.string.isRequired,
-  logoutUser: PropTypes.func.isRequired,
-  userName: PropTypes.string
+  loggedInUser: PropTypes.string.isRequired,
+  logoutUser: PropTypes.func.isRequired
 };
 
 export default Navigation;

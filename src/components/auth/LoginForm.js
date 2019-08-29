@@ -1,45 +1,81 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+import { login } from "../../api/auth";
+import * as storage from "../../helpers/local-storage";
+import { withRouter } from "react-router";
+
 class LoginForm extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: null,
+      password: null
+    };
+    this.setInputValue = this.setInputValue.bind(this);
+    this.submitLogin = this.submitLogin.bind(this);
+  }
+  setInputValue = ({ target: { id, value } }) => {
+    this.setState({
+      [id]: value
+    });
+  };
+  submitLogin = async e => {
+    e.preventDefault();
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    const result = await login(user);
+    if (result.token) {
+      const userInfo = {
+        token: result.token,
+        id: result.user_info._id,
+        isAdmin: result.user_info.isAdmin,
+        userName: result.user_info.first_name
+      };
+      storage.setUserInfo(userInfo);
+      this.props.history.push("/");
+    } else {
+      this.setState({
+        errorMessage: result.message
+      });
+    }
+  };
   render() {
-    const { submitLogin, setInputValue } = this.props;
     return (
-      <div>
-        <div></div>
-        <form onSubmit={submitLogin}>
-          <div className="form-group">
-            <label htmlFor="email">Username</label>
-            <input
-              className="form-control"
-              id="email"
-              onChange={setInputValue}
-              name="email"
-              type="text"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              className="form-control"
-              id="password"
-              onChange={setInputValue}
-              name="password"
-              type="password"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
-      </div>
+      <React.Fragment>
+        <div class="login-form">
+          <form onSubmit={this.submitLogin}>
+            <h2 class="text-center">Login</h2>
+            <div class="form-group">
+              <input
+                id="email"
+                type="text"
+                class="form-control"
+                placeholder="Email"
+                required="required"
+                onChange={this.setInputValue}
+              />
+            </div>
+            <div class="form-group">
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                required="required"
+                onChange={this.setInputValue}
+              />
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">
+                Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </React.Fragment>
     );
   }
 }
-LoginForm.propTypes = {
-  submitLogin: PropTypes.func.isRequired,
-  setInputValue: PropTypes.func.isRequired
-};
 
-export default LoginForm;
+export default withRouter(LoginForm);

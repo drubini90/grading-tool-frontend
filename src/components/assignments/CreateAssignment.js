@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Layout from "../shared/Layout";
 import Container from "react-bootstrap/Container";
 import * as storage from "../../helpers/local-storage";
@@ -44,38 +43,49 @@ class CreateAssignment extends Component {
           isAdmin={loggedInUser.isAdmin}
           logoutUser={logoutUser}
         ></Layout>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="row">
+                <div class="col-sm-12">
+                  <label htmlFor="title">Assignment Title</label>
+                  <input
+                    className="form-control"
+                    id="title"
+                    onChange={this.setInputValue}
+                    name="title"
+                    type="text"
+                    required
+                  />
+                </div>
+                <div class="col-sm-12  pull-right">
+                  <label htmlFor="projectLink">Project Link</label>
+                  <input
+                    className="form-control"
+                    id="projectLink"
+                    onChange={this.setInputValue}
+                    name="projectLink"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="col-sm-12">
+                <label htmlFor="description">Project Description</label>
+                <textarea
+                  className="form-control"
+                  id="description"
+                  onChange={this.setInputValue}
+                  name="description"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         <Container>
-          <div className="form-group">
-            <label htmlFor="title">Assignment Title</label>
-            <input
-              className="form-control"
-              id="title"
-              onChange={this.setInputValue}
-              name="title"
-              type="text"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="projectLink">Project Link</label>
-            <input
-              className="form-control"
-              id="projectLink"
-              onChange={this.setInputValue}
-              name="projectLink"
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="description">Project Description</label>
-            <input
-              className="form-control"
-              id="description"
-              onChange={this.setInputValue}
-              name="description"
-              required
-            />
-          </div>
+          <div className="form-group"></div>
           <button
             type="submit"
             className="btn btn-primary"

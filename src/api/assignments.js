@@ -18,3 +18,8 @@ export const deleteAssignment = id =>
     body: null,
     method: "DELETE"
   });
+
+export const getGradedAssignments = () => request("/api/assignments/graded");
+
+export const getUngradedAssignments = () =>
+  request("/api/assignments/ungraded");

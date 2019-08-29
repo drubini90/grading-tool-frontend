@@ -4,7 +4,6 @@ import AdminLinks from "./Navigation.AdminLinks";
 import StudentLinks from "./Navigation.StudentLinks";
 
 import UnauthenticatedLinks from "./Navigation.UnauthenticatedLinks";
-import * as storage from "../../../helpers/local-storage";
 
 export default ({ isLoggedIn, isAdmin, logoutUser }) => {
   // const isLoggedIn = () => {

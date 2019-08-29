@@ -5,6 +5,7 @@ import SignupForm from "./components/auth/SignupForm";
 import Assignments from "./components/assignments/Assignments";
 import Students from "./components/students/Students";
 import CreateAssignment from "./components/assignments/CreateAssignment";
+import EditAssignment from "./components/assignments/EditAssignment";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,8 +17,8 @@ const routing = (
       <Route path="/signup" component={SignupForm} />
       <Route path="/assignments" component={Assignments} />
       <Route path="/students" component={Students} />
-      <Route path="/assignments/new" component={CreateAssignment} />
-      <Route path="/assignments/:id/edit" component={CreateAssignment} />
+      <Route exact path="/createassignments" component={CreateAssignment} />
+      <Route exact path="/editassignment/:id" component={EditAssignment} />
     </Switch>
   </Router>
 );

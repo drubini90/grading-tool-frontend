@@ -113,13 +113,7 @@ class App extends React.Component {
   };
 
   render() {
-    const {
-      loading,
-      errorMessage,
-      loggedInUser,
-      studentsList,
-      assignmentsList
-    } = this.state;
+    const { loading, errorMessage, loggedInUser } = this.state;
     if (loading) return <span />;
     const isLoggedIn = loggedInUser.id ? true : false;
     return (

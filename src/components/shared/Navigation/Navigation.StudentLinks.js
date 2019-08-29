@@ -21,7 +21,13 @@ const StudentLinks = ({ logoutUser }) => {
         </Link>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to={`/assignments/new`}>
+        <Link
+          className="nav-link"
+          to={{
+            pathname: `createassignments`,
+            state: { logoutUser: logoutUser }
+          }}
+        >
           Create New Assignment
         </Link>
       </li>

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+
 import Layout from "../shared/Layout";
 import Container from "react-bootstrap/Container";
 import * as storage from "../../helpers/local-storage";
-import { createAssignment } from "../../api/assignments";
+import { getAssignment, editAssignment } from "../../api/assignments";
 
-class CreateAssignment extends Component {
+class EditAssignment extends Component {
   constructor() {
     super();
     this.state = {
@@ -15,26 +17,45 @@ class CreateAssignment extends Component {
       project_link: null
     };
     this.setInputValue = this.setInputValue.bind(this);
-    this.createAssignment = this.createAssignment.bind(this);
+    this.editAssignment = this.editAssignment.bind(this);
   }
   setInputValue = ({ target: { name, value } }) => {
     this.setState({
       [name]: value
     });
   };
-  async createAssignment() {
+  async editAssignment() {
     const { history } = this.props;
+    const { id } = this.props.match.params;
     const assignmentInfo = {
       title: this.state.title,
       description: this.state.description,
       project_link: this.state.projectLink
     };
-    await createAssignment(assignmentInfo);
+    await editAssignment(id, assignmentInfo);
     history.push("/");
   }
+  async componentDidMount() {
+    if (!this.state.title) {
+      const { id } = this.props.match.params;
+      const assignment = await getAssignment(id);
+      if (assignment) {
+        this.setState({
+          title: assignment.response.title,
+          description: assignment.response.description,
+          projectLink: assignment.response.project_link
+        });
+      }
+    }
+  }
   render() {
-    const { loggedInUser } = this.state;
-    const logoutUser = this.props.location.state.logoutUser;
+    const {
+      loggedInUser,
+      logoutUser,
+      title,
+      description,
+      projectLink
+    } = this.state;
     const isLoggedIn = loggedInUser.id ? true : false;
 
     return (
@@ -53,6 +74,7 @@ class CreateAssignment extends Component {
               onChange={this.setInputValue}
               name="title"
               type="text"
+              value={title}
               required
             />
           </div>
@@ -63,6 +85,7 @@ class CreateAssignment extends Component {
               id="projectLink"
               onChange={this.setInputValue}
               name="projectLink"
+              value={projectLink}
               required
             />
           </div>
@@ -73,13 +96,14 @@ class CreateAssignment extends Component {
               id="description"
               onChange={this.setInputValue}
               name="description"
+              value={description}
               required
             />
           </div>
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={this.createAssignment}
+            onClick={this.editAssignment}
           >
             Submit
           </button>
@@ -88,7 +112,4 @@ class CreateAssignment extends Component {
     );
   }
 }
-// CreateAssignment.propTypes = {
-//   logoutUser: PropTypes.func.isRequired
-// };
-export default CreateAssignment;
+export default withRouter(EditAssignment);

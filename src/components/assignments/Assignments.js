@@ -4,7 +4,7 @@ import Assignment from "./Assignment";
 import Container from "react-bootstrap/Container";
 import Layout from "../shared/Layout";
 import * as storage from "../../helpers/local-storage";
-import { getAssignments } from "../../api/assignments";
+import { getAssignments, deleteAssignment } from "../../api/assignments";
 
 class Assignments extends Component {
   constructor() {
@@ -14,11 +14,16 @@ class Assignments extends Component {
       assignmentsList: []
     };
     this.getAssignments = this.getAssignments.bind(this);
+    this.deleteAssignment = this.deleteAssignment.bind(this);
   }
   async componentDidMount() {
     if (this.state.loggedInUser.token) {
       await this.getAssignments();
     }
+  }
+  async deleteAssignment(e) {
+    await deleteAssignment(e.target.id);
+    await this.getAssignments();
   }
   getAssignments = async () => {
     const assignments = await getAssignments();
@@ -31,8 +36,14 @@ class Assignments extends Component {
     const { logoutUser } = this.props;
 
     const isLoggedIn = loggedInUser.id ? true : false;
-    const assignments = assignmentsList.map((data, id) => {
-      return <Assignment title={data.title} key={id} />;
+    const assignments = assignmentsList.map((assignment, id) => {
+      return (
+        <Assignment
+          assignment={assignment}
+          deleteAssignment={this.deleteAssignment}
+          key={id}
+        />
+      );
     });
     return (
       <React.Fragment>

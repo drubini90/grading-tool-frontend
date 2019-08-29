@@ -1,12 +1,19 @@
-const APPLICATION_LOCAL_STORAGE_KEY = "grading_app";
-export const setToken = token => {
-  window.localStorage.setItem(APPLICATION_LOCAL_STORAGE_KEY, token);
+const GRADING_APP_USER_INFO = "grading_app_user_info";
+
+export const setUserInfo = userInfo => {
+  window.localStorage.setItem(GRADING_APP_USER_INFO, JSON.stringify(userInfo));
 };
 
-export const getToken = () => {
-  return window.localStorage.getItem(APPLICATION_LOCAL_STORAGE_KEY);
+export const getUserInfo = () => {
+  return window.localStorage.getItem(GRADING_APP_USER_INFO)
+    ? JSON.parse(window.localStorage.getItem(GRADING_APP_USER_INFO))
+    : { isAdmin: false };
 };
 
-export const clearToken = () => {
-  window.localStorage.clear(APPLICATION_LOCAL_STORAGE_KEY);
+export const clearUserInfo = () => {
+  window.localStorage.clear(GRADING_APP_USER_INFO);
+  window.localStorage.setItem(
+    GRADING_APP_USER_INFO,
+    JSON.stringify({ isAdmin: false })
+  );
 };

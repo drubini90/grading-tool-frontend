@@ -1,4 +1,4 @@
-import * as token from "../helpers/local-storage";
+import * as storge from "../helpers/local-storage";
 
 const { NODE_ENV } = process.env;
 const BASE_URL = NODE_ENV === "development" ? "http://localhost:5000" : "tbd";
@@ -7,7 +7,7 @@ export default async (path, { body = null, method = "GET" } = {}) => {
   const options = {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token.getToken()}`
+      Authorization: `Bearer ${storge.getUserInfo().token}`
     },
     method
   };

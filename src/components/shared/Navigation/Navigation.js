@@ -1,21 +1,26 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import AdminLinks from "./Navigation.AdminLinks";
 import StudentLinks from "./Navigation.StudentLinks";
 
 import UnauthenticatedLinks from "./Navigation.UnauthenticatedLinks";
+import * as storage from "../../../helpers/local-storage";
 
-const Navigation = props => {
-  const { loggedInUser, logoutUser } = props;
+export default ({ isLoggedIn, isAdmin, logoutUser }) => {
+  // const isLoggedIn = () => {
+  //   return storage.getUserInfo().id ? true : false;
+  // };
+  // const isAdmin = () => {
+  //   return storage.getUserInfo().isAdmin;
+  // };
   return (
     <section className="bg-light border-bottom mb-4">
       <div className="container">
-        {loggedInUser.id ? (
-          loggedInUser.isAdmin ? (
-            <AdminLinks loggedInUser={loggedInUser} logoutUser={logoutUser} />
+        {isLoggedIn ? (
+          isAdmin ? (
+            <AdminLinks logoutUser={logoutUser} />
           ) : (
-            <StudentLinks loggedInUser={loggedInUser} logoutUser={logoutUser} />
+            <StudentLinks logoutUser={logoutUser} />
           )
         ) : (
           <UnauthenticatedLinks />
@@ -24,9 +29,3 @@ const Navigation = props => {
     </section>
   );
 };
-Navigation.propTypes = {
-  loggedInUser: PropTypes.string.isRequired,
-  logoutUser: PropTypes.func.isRequired
-};
-
-export default Navigation;

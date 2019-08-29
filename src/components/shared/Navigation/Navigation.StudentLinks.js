@@ -1,19 +1,17 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
+import * as storage from "../../../helpers/local-storage";
 
-const StudentLinks = props => {
-  const { loggedInUser, logoutUser, history } = props;
-  const logout = () => {
-    logoutUser();
-    history.push("/login");
+const StudentLinks = ({ logoutUser }) => {
+  const getUserName = () => {
+    return storage.getUserInfo().userName;
   };
 
   return (
     <ul className="nav justify-content-end">
       <li className="nav-item">
-        <Link className="nav-link" to={`/assignments`}>
+        <Link className="nav-link" to={`/`}>
           Home
         </Link>
       </li>
@@ -28,16 +26,12 @@ const StudentLinks = props => {
         </Link>
       </li>
       <li className="nav-item">
-        <button className="btn btn-link" onClick={logout}>
+        <button className="btn btn-link" onClick={logoutUser}>
           Logout
         </button>
       </li>
-      <li className="nav-item">Welcome {loggedInUser.userName} !!!</li>
+      <li className="nav-item">Welcome {getUserName} !!!</li>
     </ul>
   );
-};
-StudentLinks.propTypes = {
-  loggedInUser: PropTypes.object.isRequired,
-  logoutUser: PropTypes.func.isRequired
 };
 export default withRouter(StudentLinks);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { login } from "../../api/auth";
 import * as storage from "../../helpers/local-storage";
 import { withRouter } from "react-router";
+import PropTypes from "prop-types";
 
 class LoginForm extends Component {
   constructor() {
@@ -10,8 +11,8 @@ class LoginForm extends Component {
       email: null,
       password: null
     };
-    this.setInputValue = this.setInputValue.bind(this);
-    this.submitLogin = this.submitLogin.bind(this);
+    //this.setInputValue = this.setInputValue.bind(this);
+    //this.submitLogin = this.submitLogin.bind(this);
   }
   setInputValue = ({ target: { id, value } }) => {
     this.setState({
@@ -41,10 +42,11 @@ class LoginForm extends Component {
     }
   };
   render() {
+    const { submitLogin, setInputValue } = this.props;
     return (
       <React.Fragment>
         <div class="login-form">
-          <form onSubmit={this.submitLogin}>
+          <form onSubmit={submitLogin}>
             <h2 class="text-center">Login</h2>
             <div class="form-group">
               <input
@@ -53,7 +55,7 @@ class LoginForm extends Component {
                 class="form-control"
                 placeholder="Email"
                 required="required"
-                onChange={this.setInputValue}
+                onChange={setInputValue}
               />
             </div>
             <div class="form-group">
@@ -63,7 +65,7 @@ class LoginForm extends Component {
                 class="form-control"
                 placeholder="Password"
                 required="required"
-                onChange={this.setInputValue}
+                onChange={setInputValue}
               />
             </div>
             <div class="form-group">
@@ -77,5 +79,10 @@ class LoginForm extends Component {
     );
   }
 }
+
+LoginForm.propTypes = {
+  submitLogin: PropTypes.func,
+  setInputValue: PropTypes.func
+};
 
 export default withRouter(LoginForm);

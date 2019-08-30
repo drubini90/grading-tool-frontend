@@ -8,9 +8,6 @@ import PageError from "./shared/PageError";
 import { getAllStudents } from "../api/students";
 import { getAssignments } from "../api/assignments";
 
-// import Signup from "./auth/SignupForm";
-
-// import * as auth from "../api/auth";
 import * as storage from "../helpers/local-storage";
 import Students from "./students/Students";
 import LoginForm from "./auth/LoginForm";
@@ -48,9 +45,9 @@ class App extends React.Component {
     });
   }
 
-  setInputValue = ({ target: { name, value } }) => {
+  setInputValue = ({ target: { id, value } }) => {
     this.setState({
-      [name]: value
+      [id]: value
     });
   };
 

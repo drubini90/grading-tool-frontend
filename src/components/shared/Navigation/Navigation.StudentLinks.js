@@ -9,35 +9,39 @@ const StudentLinks = ({ logoutUser }) => {
   };
 
   return (
-    <ul className="nav justify-content-end">
-      <li className="nav-item">
-        <Link className="nav-link" to={`/`}>
-          Home
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to={`/students`}>
-          All Students
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link
-          className="nav-link"
-          to={{
-            pathname: `createassignments`,
-            state: { logoutUser: logoutUser }
-          }}
-        >
-          Create New Assignment
-        </Link>
-      </li>
-      <li className="nav-item">
-        <button className="btn btn-link" onClick={logoutUser}>
-          Logout
-        </button>
-      </li>
-      <li className="nav-item">Welcome {getUserName} !!!</li>
-    </ul>
+    <div class="row">
+      <div class="col-sm-10">
+        <ul className="nav">
+          <li className="nav-item">
+            <Link className="nav-link menuLink" to={`/`}>
+              Home
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link menuLink" to={`/students`}>
+              All Students
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link
+              className="nav-link menuLink"
+              to={{
+                pathname: `createassignments`,
+                state: { logoutUser: logoutUser }
+              }}
+            >
+              Create New Assignment
+            </Link>
+          </li>
+          <li className="nav-item">
+            <button className="btn btn-link menuLink" onClick={logoutUser}>
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-2 menuLink">Welcome, {getUserName()}!</div>
+    </div>
   );
 };
 export default withRouter(StudentLinks);

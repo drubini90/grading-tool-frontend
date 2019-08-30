@@ -6,14 +6,9 @@ import "../App.css";
 class Header extends Component {
   render() {
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="info" variant="dark">
         <Navbar.Brand href="/">
-          <img
-            alt="myLogo"
-            src={home}
-            className="d-inline-block align-top logo"
-          />
-          {" ASSIGNMENT TRACKER "}
+          <h3>Assignment Tracker</h3>
         </Navbar.Brand>
       </Navbar>
     );

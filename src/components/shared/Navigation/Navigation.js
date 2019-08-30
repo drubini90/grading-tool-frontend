@@ -13,8 +13,8 @@ export default ({ isLoggedIn, isAdmin, logoutUser }) => {
   //   return storage.getUserInfo().isAdmin;
   // };
   return (
-    <section className="bg-light border-bottom mb-4">
-      <div className="container">
+    <section className="bg-light border-bottom mb-12">
+      <div>
         {isLoggedIn ? (
           isAdmin ? (
             <AdminLinks logoutUser={logoutUser} />

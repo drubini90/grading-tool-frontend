@@ -29,3 +29,68 @@
   font-size: 15px;
   font-weight: bold;
 }
+.assignment-form,
+.student-form {
+  width: 100%;
+  margin: 10px;
+  border: 0.5px solid darkgray;
+  background: #f2f2f2;
+  padding: 20px;
+}
+.filterpanel {
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+}
+.assignment {
+  margin: 10px;
+}
+.score {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+}
+.noscore {
+  font-size: 12px;
+  color: grey;
+}
+.buttonPanel {
+  padding: 10px 0px 0px 0px;
+}
+.scorebox {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+.projectLink {
+  text-decoration: underline !important;
+}
+.saveAssignment {
+  width: 100% !important;
+}
+.menuLink {
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  color: black !important;
+  font-weight: bold !important;
+}
+.grade_greater90 {
+  font-size: 12px;
+  font-weight: bold;
+  color: green;
+}
+.grade_greater80 {
+  font-size: 12px;
+  font-weight: bold;
+  color: blue;
+}
+.grade_greater50 {
+  font-size: 12px;
+  font-weight: bold;
+  color: purple;
+}
+.grade_less50 {
+  font-size: 12px;
+  font-weight: bold;
+  color: red;
+}

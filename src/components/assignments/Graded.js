@@ -42,38 +42,65 @@ class Graded extends React.Component {
     const { assignment } = this.props;
     const { actual_score, max_score } = this.state;
     return (
-      <React.Fragment>
-        <Container>
-          <div>{assignment.title}</div>
-          <div>{assignment.description}</div>
-          <div>{assignment.projectLink}</div>
-          <input
-            className="form-control"
-            id="actual_score"
-            onChange={this.setInputValue}
-            name="actual_score"
-            type="text"
-            value={actual_score}
-            required
-          />
-          <label>out of</label>
-          <input
-            className="form-control"
-            id="max_score"
-            onChange={this.state.setInputValue}
-            name="max_score"
-            value={max_score}
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.saveAssignment}
-          >
-            Save
-          </button>
-        </Container>
-      </React.Fragment>
+      <div class="assignment-form">
+        <div class="row">
+          <div class="col-sm-9">
+            <h5>{assignment.title}</h5>
+            <div>{assignment.description}</div>
+          </div>
+          <div class="col-sm-3">
+            <div class="row">
+              <div class="col-sm-4">
+                <input
+                  className="scorebox"
+                  id="actual_score"
+                  onChange={this.setInputValue}
+                  name="actual_score"
+                  type="text"
+                  required
+                  value={this.state.actual_score}
+                />
+              </div>
+              <div class="col-sm-4">
+                <label>out of</label>
+              </div>
+              <div class="col-sm-4">
+                <input
+                  className="scorebox"
+                  id="max_score"
+                  onChange={this.setInputValue}
+                  name="max_score"
+                  required
+                  value={this.state.max_score}
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-9">
+            <a
+              href="#"
+              onClick={this.redirectToProjectLink}
+              class="projectLink"
+            >
+              Project Link
+            </a>
+          </div>
+          <div class="col-sm-3">
+            <button
+              type="submit"
+              className="btn btn-secondary saveAssignment"
+              onClick={this.saveAssignment}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 }

@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import Container from "react-bootstrap/Container";
-
 class Ungraded extends React.Component {
   constructor() {
     super();
@@ -32,36 +30,64 @@ class Ungraded extends React.Component {
   render() {
     const { assignment } = this.props;
     return (
-      <React.Fragment>
-        <Container>
-          <div>{assignment.title}</div>
-          <div>{assignment.description}</div>
-          <div>{assignment.projectLink}</div>
-          <input
-            className="form-control"
-            id="actual_score"
-            onChange={this.setInputValue}
-            name="actual_score"
-            type="text"
-            required
-          />
-          <label>out of</label>
-          <input
-            className="form-control"
-            id="max_score"
-            onChange={this.setInputValue}
-            name="max_score"
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={this.saveAssignment}
-          >
-            Save
-          </button>
-        </Container>
-      </React.Fragment>
+      <div class="assignment-form">
+        <form onSubmit={this.saveAssignment}>
+          <div class="row">
+            <div class="col-sm-9">
+              <h5>{assignment.title}</h5>
+              <div>{assignment.description}</div>
+            </div>
+            <div class="col-sm-3">
+              <div class="row">
+                <div class="col-sm-4">
+                  <input
+                    className="scorebox"
+                    id="actual_score"
+                    onChange={this.setInputValue}
+                    name="actual_score"
+                    type="text"
+                    required
+                  />
+                </div>
+                <div class="col-sm-4">
+                  <label>out of</label>
+                </div>
+                <div class="col-sm-4">
+                  <input
+                    className="scorebox"
+                    id="max_score"
+                    onChange={this.setInputValue}
+                    name="max_score"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9">
+              <a
+                href="#"
+                onClick={this.redirectToProjectLink}
+                class="projectLink"
+              >
+                Project Link
+              </a>
+            </div>
+            <div class="col-sm-3">
+              <button
+                type="submit"
+                className="btn btn-secondary saveAssignment"
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     );
   }
 }

@@ -62,7 +62,6 @@ class CreateAssignment extends Component {
                         id="projectLink"
                         onChange={this.setInputValue}
                         name="projectLink"
-                        required
                       />
                     </div>
                   </div>
@@ -75,7 +74,6 @@ class CreateAssignment extends Component {
                       id="description"
                       onChange={this.setInputValue}
                       name="description"
-                      required
                     />
                   </div>
                 </div>

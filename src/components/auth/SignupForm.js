@@ -46,7 +46,7 @@ class SignupForm extends Component {
             <div class="form-group">
               <input
                 id="email"
-                type="text"
+                type="email"
                 class="form-control"
                 placeholder="Email"
                 required="required"

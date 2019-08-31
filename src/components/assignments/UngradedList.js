@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Layout from "../shared/Layout";
 import * as storage from "../../helpers/local-storage";
 import { getUngradedAssignments, editAssignment } from "../../api/assignments";
+import { Redirect } from "react-router-dom";
 
 class UngradedList extends Component {
   constructor() {
@@ -38,8 +39,8 @@ class UngradedList extends Component {
   }
   render() {
     const { loggedInUser, unGradedAssignmentsList } = this.state;
-
     const isLoggedIn = loggedInUser.id ? true : false;
+    const isAdmin = loggedInUser.isAdmin ? true : false;
     const assignments = unGradedAssignmentsList.map((assignment, id) => {
       return (
         <Ungraded
@@ -52,7 +53,15 @@ class UngradedList extends Component {
     return (
       <React.Fragment>
         <Layout isLoggedIn={isLoggedIn} isAdmin={loggedInUser.isAdmin}></Layout>
-        <Container>{assignments}</Container>
+        {isLoggedIn ? (
+          isAdmin ? (
+            <Container>{assignments}</Container>
+          ) : (
+            <Redirect to="/"></Redirect>
+          )
+        ) : (
+          <Redirect to="/login"></Redirect>
+        )}
       </React.Fragment>
     );
   }

@@ -20,6 +20,7 @@ const routing = (
       <Route path="/students" component={Students} />
       <Route exact path="/createassignments" component={CreateAssignment} />
       <Route exact path="/editassignment/:id" component={EditAssignment} />
+      <Route component={App} />
     </Switch>
   </Router>
 );

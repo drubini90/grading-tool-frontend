@@ -11,8 +11,6 @@ class LoginForm extends Component {
       email: null,
       password: null
     };
-    //this.setInputValue = this.setInputValue.bind(this);
-    //this.submitLogin = this.submitLogin.bind(this);
   }
   setInputValue = ({ target: { id, value } }) => {
     this.setState({
@@ -51,7 +49,7 @@ class LoginForm extends Component {
             <div className="form-group">
               <input
                 id="email"
-                type="text"
+                type="email"
                 className="form-control"
                 placeholder="Email"
                 required="required"

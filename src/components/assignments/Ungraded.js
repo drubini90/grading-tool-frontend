@@ -45,7 +45,9 @@ class Ungraded extends React.Component {
                     id="actual_score"
                     onChange={this.setInputValue}
                     name="actual_score"
-                    type="text"
+                    type="number"
+                    min="0"
+                    max="100"
                     required
                   />
                 </div>
@@ -58,6 +60,9 @@ class Ungraded extends React.Component {
                     id="max_score"
                     onChange={this.setInputValue}
                     name="max_score"
+                    type="number"
+                    min="0"
+                    max="100"
                     required
                   />
                 </div>

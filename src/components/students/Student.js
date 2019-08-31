@@ -12,6 +12,7 @@ class Student extends React.Component {
   render() {
     let gradeStyle, grade;
     const { studentInfo } = this.props;
+    const { loggedInUser } = this.state;
     grade = studentInfo.grade;
     if (studentInfo.grade) {
       if (grade > 90) gradeStyle = "grade_greater90";
@@ -37,9 +38,13 @@ class Student extends React.Component {
               <div> - {studentInfo.email}</div>
             </div>
           </div>
-          <div className="col-sm-2">
-            <div className={gradeStyle}>{grade}</div>
-          </div>
+          {loggedInUser.isAdmin ? (
+            <div className="col-sm-2">
+              <div className={gradeStyle}>{grade}</div>
+            </div>
+          ) : (
+            <div className="col-sm-2"></div>
+          )}
         </div>
       </div>
     );

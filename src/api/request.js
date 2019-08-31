@@ -1,7 +1,7 @@
 import * as storge from "../helpers/local-storage";
 
-const { NODE_ENV } = process.env;
-const BASE_URL = NODE_ENV === "development" ? "http://localhost:5000" : "tbd";
+const { REACT_APP_API_DOMAIN } = process.env;
+const BASE_URL = REACT_APP_API_DOMAIN;
 
 export default async (path, { body = null, method = "GET" } = {}) => {
   const options = {

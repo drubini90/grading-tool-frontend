@@ -9,7 +9,8 @@ export default async (path, { body = null, method = "GET" } = {}) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${storge.getUserInfo().token}`
     },
-    method
+    method,
+    mode: "no-cors"
   };
   if (body) Object.assign(options, { body: JSON.stringify(body) });
 

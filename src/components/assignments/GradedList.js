@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Graded from "./Graded";
 import Container from "react-bootstrap/Container";
 import Layout from "../shared/Layout";
@@ -39,7 +38,6 @@ class GradedList extends Component {
   }
   render() {
     const { loggedInUser, gradedAssignmentsList } = this.state;
-    const { logoutUser } = this.props;
 
     const isLoggedIn = loggedInUser.id ? true : false;
     const assignments = gradedAssignmentsList.map((assignment, id) => {
@@ -53,18 +51,10 @@ class GradedList extends Component {
     });
     return (
       <React.Fragment>
-        <Layout
-          isLoggedIn={isLoggedIn}
-          isAdmin={loggedInUser.isAdmin}
-          logoutUser={logoutUser}
-        ></Layout>
+        <Layout isLoggedIn={isLoggedIn} isAdmin={loggedInUser.isAdmin}></Layout>
         <Container>{assignments}</Container>
       </React.Fragment>
     );
   }
 }
-
-GradedList.propTypes = {
-  logoutUser: PropTypes.func.isRequired
-};
 export default GradedList;

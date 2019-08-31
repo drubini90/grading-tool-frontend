@@ -25,7 +25,6 @@ class App extends React.Component {
       assignmentsList: []
     };
 
-    this.logoutUser = this.logoutUser.bind(this);
     this.setInputValue = this.setInputValue.bind(this);
     this.submitLogin = this.submitLogin.bind(this);
     this.signupUser = this.signupUser.bind(this);
@@ -37,12 +36,6 @@ class App extends React.Component {
       await this.getStudentsInfo();
       await this.getAssignments();
     }
-  }
-  logoutUser() {
-    storage.clearUserInfo();
-    this.setState({
-      loggedInUser: storage.getUserInfo()
-    });
   }
 
   setInputValue = ({ target: { id, value } }) => {
@@ -117,16 +110,15 @@ class App extends React.Component {
       <React.Fragment>
         {isLoggedIn ? (
           loggedInUser.isAdmin ? (
-            <Students logoutUser={this.logoutUser}></Students>
+            <Students></Students>
           ) : (
-            <Assignments logoutUser={this.logoutUser}></Assignments>
+            <Assignments></Assignments>
           )
         ) : (
           <React.Fragment>
             <Layout
               isLoggedIn={isLoggedIn}
               isAdmin={loggedInUser.isAdmin}
-              logoutUser={this.logoutUser}
             ></Layout>
             <PageError errorMessage={errorMessage}></PageError>
             <LoginForm

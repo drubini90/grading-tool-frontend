@@ -3,11 +3,14 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import * as storage from "../../../helpers/local-storage";
 
-const AdminLinks = ({ logoutUser }) => {
+const AdminLinks = () => {
   const getUserName = () => {
     return storage.getUserInfo().userName;
   };
-
+  const logout = () => {
+    storage.clearUserInfo();
+    window.location.reload();
+  };
   return (
     <div className="row">
       <div className="col-sm-10">
@@ -28,7 +31,7 @@ const AdminLinks = ({ logoutUser }) => {
             </Link>
           </li>
           <li className="nav-item menuLink">
-            <button className="btn btn-link menuLink" onClick={logoutUser}>
+            <button className="btn btn-link menuLink" onClick={logout}>
               Logout
             </button>
           </li>

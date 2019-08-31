@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Student from "./Student";
 import Layout from "../shared/Layout";
 import Container from "react-bootstrap/Container";
@@ -44,7 +43,6 @@ class Students extends Component {
   };
   render() {
     const { loggedInUser, studentsList } = this.state;
-    const { logoutUser } = this.props;
     const isLoggedIn = loggedInUser.id ? true : false;
     let students;
     if (studentsList) {
@@ -54,11 +52,7 @@ class Students extends Component {
     }
     return (
       <React.Fragment>
-        <Layout
-          isLoggedIn={isLoggedIn}
-          isAdmin={loggedInUser.isAdmin}
-          logoutUser={logoutUser}
-        ></Layout>
+        <Layout isLoggedIn={isLoggedIn} isAdmin={loggedInUser.isAdmin}></Layout>
         {isLoggedIn ? (
           <Container>
             <div className="filterpanel">
@@ -112,7 +106,4 @@ class Students extends Component {
     );
   }
 }
-Students.propTypes = {
-  logoutUser: PropTypes.func.isRequired
-};
 export default Students;

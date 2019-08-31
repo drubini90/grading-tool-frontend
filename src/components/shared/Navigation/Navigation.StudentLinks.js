@@ -3,12 +3,13 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import * as storage from "../../../helpers/local-storage";
 
-const StudentLinks = ({ logoutUser }) => {
+const StudentLinks = () => {
   const getUserName = () => {
     return storage.getUserInfo().userName;
   };
   const logout = () => {
     storage.clearUserInfo();
+    window.location.reload();
   };
 
   return (

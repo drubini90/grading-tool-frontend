@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import Ungraded from "./Ungraded";
 import Container from "react-bootstrap/Container";
 import Layout from "../shared/Layout";
@@ -39,7 +38,6 @@ class UngradedList extends Component {
   }
   render() {
     const { loggedInUser, unGradedAssignmentsList } = this.state;
-    const { logoutUser } = this.props;
 
     const isLoggedIn = loggedInUser.id ? true : false;
     const assignments = unGradedAssignmentsList.map((assignment, id) => {
@@ -53,18 +51,10 @@ class UngradedList extends Component {
     });
     return (
       <React.Fragment>
-        <Layout
-          isLoggedIn={isLoggedIn}
-          isAdmin={loggedInUser.isAdmin}
-          logoutUser={logoutUser}
-        ></Layout>
+        <Layout isLoggedIn={isLoggedIn} isAdmin={loggedInUser.isAdmin}></Layout>
         <Container>{assignments}</Container>
       </React.Fragment>
     );
   }
 }
-
-UngradedList.propTypes = {
-  logoutUser: PropTypes.func.isRequired
-};
 export default UngradedList;

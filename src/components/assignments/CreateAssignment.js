@@ -34,7 +34,6 @@ class CreateAssignment extends Component {
   }
   render() {
     const { loggedInUser } = this.state;
-    //const logoutUser = this.props.location.state.logoutUser;
     const isLoggedIn = loggedInUser.id ? true : false;
     return (
       <React.Fragment>
@@ -100,7 +99,4 @@ class CreateAssignment extends Component {
     );
   }
 }
-// CreateAssignment.propTypes = {
-//   logoutUser: PropTypes.func.isRequired
-// };
 export default CreateAssignment;

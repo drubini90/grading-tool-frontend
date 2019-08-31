@@ -48,22 +48,12 @@ class EditAssignment extends Component {
     }
   }
   render() {
-    const {
-      loggedInUser,
-      logoutUser,
-      title,
-      description,
-      projectLink
-    } = this.state;
+    const { loggedInUser, title, description, projectLink } = this.state;
     const isLoggedIn = loggedInUser.id ? true : false;
 
     return (
       <React.Fragment>
-        <Layout
-          isLoggedIn={isLoggedIn}
-          isAdmin={loggedInUser.isAdmin}
-          logoutUser={logoutUser}
-        ></Layout>
+        <Layout isLoggedIn={isLoggedIn} isAdmin={loggedInUser.isAdmin}></Layout>
         <Container>
           <div className="form-group">
             <label htmlFor="title">Assignment Title</label>

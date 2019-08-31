@@ -5,7 +5,7 @@ import StudentLinks from "./Navigation.StudentLinks";
 
 import UnauthenticatedLinks from "./Navigation.UnauthenticatedLinks";
 
-export default ({ isLoggedIn, isAdmin, logoutUser }) => {
+export default ({ isLoggedIn, isAdmin }) => {
   // const isLoggedIn = () => {
   //   return storage.getUserInfo().id ? true : false;
   // };
@@ -17,9 +17,9 @@ export default ({ isLoggedIn, isAdmin, logoutUser }) => {
       <div>
         {isLoggedIn ? (
           isAdmin ? (
-            <AdminLinks logoutUser={logoutUser} />
+            <AdminLinks />
           ) : (
-            <StudentLinks logoutUser={logoutUser} />
+            <StudentLinks />
           )
         ) : (
           <UnauthenticatedLinks />

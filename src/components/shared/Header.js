@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
-import home from "../../images/home.png";
 import "../App.css";
 
 class Header extends Component {

@@ -43,11 +43,11 @@ class CreateAssignment extends Component {
           isAdmin={loggedInUser.isAdmin}
           logoutUser={logoutUser}
         ></Layout>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="row">
-                <div class="col-sm-12">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="row">
+                <div className="col-sm-12">
                   <label htmlFor="title">Assignment Title</label>
                   <input
                     className="form-control"
@@ -58,7 +58,7 @@ class CreateAssignment extends Component {
                     required
                   />
                 </div>
-                <div class="col-sm-12  pull-right">
+                <div className="col-sm-12  pull-right">
                   <label htmlFor="projectLink">Project Link</label>
                   <input
                     className="form-control"
@@ -70,8 +70,8 @@ class CreateAssignment extends Component {
                 </div>
               </div>
             </div>
-            <div class="col-sm-6">
-              <div class="col-sm-12">
+            <div className="col-sm-6">
+              <div className="col-sm-12">
                 <label htmlFor="description">Project Description</label>
                 <textarea
                   className="form-control"

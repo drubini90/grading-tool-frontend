@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import Container from "react-bootstrap/Container";
-
 class Assignment extends React.Component {
   constructor() {
     super();
@@ -29,26 +27,26 @@ class Assignment extends React.Component {
     const { assignment, deleteAssignment } = this.props;
     const gradeStyle = assignment.actual_score ? "score" : "noscore";
     return (
-      <div class="assignment-form">
-        <div class="row">
-          <div class="col-sm-10">
+      <div className="assignment-form">
+        <div className="row">
+          <div className="col-sm-10">
             <h5>{assignment.title}</h5>
             <div>{assignment.description}</div>
             <a
               href="#"
               onClick={this.redirectToProjectLink}
-              class="projectLink"
+              className="projectLink"
             >
               Project Link
             </a>
           </div>
-          <div class="col-sm-2">
+          <div className="col-sm-2">
             <div className={gradeStyle}>{this.getScore()}</div>
           </div>
         </div>
         <div className="buttonPanel">
-          <div class="row">
-            <div class="col-sm-1">
+          <div className="row">
+            <div className="col-sm-1">
               <button
                 type="submit"
                 className="btn btn-secondary"
@@ -57,7 +55,7 @@ class Assignment extends React.Component {
                 Edit
               </button>
             </div>
-            <div class="col-sm-1">
+            <div className="col-sm-1">
               <button
                 id={assignment._id}
                 type="submit"

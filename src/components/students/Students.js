@@ -56,12 +56,12 @@ class Students extends Component {
           logoutUser={logoutUser}
         ></Layout>
         <Container>
-          <div class="filterpanel">
-            <div class="row">
-              <div class="col-sm-2">
+          <div className="filterpanel">
+            <div className="row">
+              <div className="col-sm-2">
                 <h6>Score is Above:</h6>
               </div>
-              <div class="col-sm-1">
+              <div className="col-sm-1">
                 <input
                   className="scorebox"
                   id="score_gte"
@@ -73,10 +73,10 @@ class Students extends Component {
                   required
                 />
               </div>
-              <div class="col-sm-2">
+              <div className="col-sm-2">
                 <h6>Score is Below:</h6>
               </div>
-              <div class="col-sm-1">
+              <div className="col-sm-1">
                 <input
                   className="scorebox"
                   id="score_lte"
@@ -88,7 +88,7 @@ class Students extends Component {
                   required
                 />
               </div>
-              <div class="col-sm-2">
+              <div className="col-sm-2">
                 <button
                   className="btn btn-secondary saveAssignment"
                   onClick={this.filterGrade}

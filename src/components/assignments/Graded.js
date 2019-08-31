@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
-import Container from "react-bootstrap/Container";
-
 class Graded extends React.Component {
   constructor() {
     super();
@@ -40,7 +38,6 @@ class Graded extends React.Component {
   }
   render() {
     const { assignment } = this.props;
-    const { actual_score, max_score } = this.state;
     return (
       <div class="assignment-form">
         <div class="row">

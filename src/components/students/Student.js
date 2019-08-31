@@ -27,18 +27,18 @@ class Student extends React.Component {
     }
 
     return (
-      <div class="student-form">
-        <div class="row">
-          <div class="col-sm-10">
-            <div class="row">
+      <div className="student-form">
+        <div className="row">
+          <div className="col-sm-10">
+            <div className="row">
               <h5>
                 {studentInfo.first_name} {studentInfo.last_name}
               </h5>
               <div> - {studentInfo.email}</div>
             </div>
           </div>
-          <div class="col-sm-2">
-            <div class={gradeStyle}>{grade}</div>
+          <div className="col-sm-2">
+            <div className={gradeStyle}>{grade}</div>
           </div>
         </div>
       </div>

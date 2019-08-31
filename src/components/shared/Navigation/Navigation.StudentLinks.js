@@ -9,8 +9,8 @@ const StudentLinks = ({ logoutUser }) => {
   };
 
   return (
-    <div class="row">
-      <div class="col-sm-10">
+    <div className="row">
+      <div className="col-sm-10">
         <ul className="nav">
           <li className="nav-item">
             <Link className="nav-link menuLink" to={`/`}>
@@ -40,7 +40,7 @@ const StudentLinks = ({ logoutUser }) => {
           </li>
         </ul>
       </div>
-      <div class="col-sm-2 menuLink">Welcome, {getUserName()}!</div>
+      <div className="col-sm-2 menuLink">Welcome, {getUserName()}!</div>
     </div>
   );
 };

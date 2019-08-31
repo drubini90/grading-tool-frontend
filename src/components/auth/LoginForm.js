@@ -45,31 +45,31 @@ class LoginForm extends Component {
     const { submitLogin, setInputValue } = this.props;
     return (
       <React.Fragment>
-        <div class="login-form">
+        <div className="login-form">
           <form onSubmit={submitLogin}>
-            <h2 class="text-center">Login</h2>
-            <div class="form-group">
+            <h2 className="text-center">Login</h2>
+            <div className="form-group">
               <input
                 id="email"
                 type="text"
-                class="form-control"
+                className="form-control"
                 placeholder="Email"
                 required="required"
                 onChange={setInputValue}
               />
             </div>
-            <div class="form-group">
+            <div className="form-group">
               <input
                 id="password"
                 type="password"
-                class="form-control"
+                className="form-control"
                 placeholder="Password"
                 required="required"
                 onChange={setInputValue}
               />
             </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block">
+            <div className="form-group">
+              <button type="submit" className="btn btn-primary btn-block">
                 Login
               </button>
             </div>

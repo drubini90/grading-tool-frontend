@@ -5,6 +5,7 @@ import Layout from "../shared/Layout";
 import Container from "react-bootstrap/Container";
 import * as storage from "../../helpers/local-storage";
 import { getAllStudents, getAllStudentsWithFilter } from "../../api/students";
+import { Redirect } from "react-router-dom";
 
 class Students extends Component {
   constructor() {
@@ -45,9 +46,12 @@ class Students extends Component {
     const { loggedInUser, studentsList } = this.state;
     const { logoutUser } = this.props;
     const isLoggedIn = loggedInUser.id ? true : false;
-    const students = studentsList.map(studentInfo => {
-      return <Student studentInfo={studentInfo} />;
-    });
+    let students;
+    if (studentsList) {
+      students = studentsList.map(studentInfo => {
+        return <Student studentInfo={studentInfo} />;
+      });
+    }
     return (
       <React.Fragment>
         <Layout
@@ -55,51 +59,55 @@ class Students extends Component {
           isAdmin={loggedInUser.isAdmin}
           logoutUser={logoutUser}
         ></Layout>
-        <Container>
-          <div className="filterpanel">
-            <div className="row">
-              <div className="col-sm-2">
-                <h6>Score is Above:</h6>
-              </div>
-              <div className="col-sm-1">
-                <input
-                  className="scorebox"
-                  id="score_gte"
-                  onChange={this.setInputValue}
-                  name="score_gte"
-                  type="number"
-                  min="0"
-                  max="100"
-                  required
-                />
-              </div>
-              <div className="col-sm-2">
-                <h6>Score is Below:</h6>
-              </div>
-              <div className="col-sm-1">
-                <input
-                  className="scorebox"
-                  id="score_lte"
-                  onChange={this.setInputValue}
-                  name="score_lte"
-                  type="number"
-                  min="0"
-                  max="100"
-                  required
-                />
-              </div>
-              <div className="col-sm-2">
-                <button
-                  className="btn btn-secondary saveAssignment"
-                  onClick={this.filterGrade}
-                >
-                  Filter
-                </button>
+        {isLoggedIn ? (
+          <Container>
+            <div className="filterpanel">
+              <div className="row">
+                <div className="col-sm-2">
+                  <h6>Score is Above:</h6>
+                </div>
+                <div className="col-sm-1">
+                  <input
+                    className="scorebox"
+                    id="score_gte"
+                    onChange={this.setInputValue}
+                    name="score_gte"
+                    type="number"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div className="col-sm-2">
+                  <h6>Score is Below:</h6>
+                </div>
+                <div className="col-sm-1">
+                  <input
+                    className="scorebox"
+                    id="score_lte"
+                    onChange={this.setInputValue}
+                    name="score_lte"
+                    type="number"
+                    min="0"
+                    max="100"
+                    required
+                  />
+                </div>
+                <div className="col-sm-2">
+                  <button
+                    className="btn btn-secondary saveAssignment"
+                    onClick={this.filterGrade}
+                  >
+                    Filter
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          {students}
-        </Container>
+            {students}
+          </Container>
+        ) : (
+          <Redirect to="/login"></Redirect>
+        )}
       </React.Fragment>
     );
   }

@@ -7,6 +7,9 @@ const StudentLinks = ({ logoutUser }) => {
   const getUserName = () => {
     return storage.getUserInfo().userName;
   };
+  const logout = () => {
+    storage.clearUserInfo();
+  };
 
   return (
     <div className="row">
@@ -23,18 +26,12 @@ const StudentLinks = ({ logoutUser }) => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link
-              className="nav-link menuLink"
-              to={{
-                pathname: `createassignments`,
-                state: { logoutUser: logoutUser }
-              }}
-            >
+            <Link className="nav-link menuLink" to={`/createassignments`}>
               Create New Assignment
             </Link>
           </li>
           <li className="nav-item">
-            <button className="btn btn-link menuLink" onClick={logoutUser}>
+            <button className="btn btn-link menuLink" onClick={logout}>
               Logout
             </button>
           </li>

@@ -5,13 +5,8 @@ import { withRouter } from "react-router";
 class Assignment extends React.Component {
   constructor() {
     super();
-    this.editAssignment = this.editAssignment.bind(this);
     this.redirectToProjectLink = this.redirectToProjectLink.bind(this);
     this.getScore = this.getScore.bind(this);
-  }
-  editAssignment(e) {
-    const { history } = this.props;
-    history.push("/editAssignment/" + e.target.nextSibling.id);
   }
   redirectToProjectLink() {
     window.location.assign("http://github.com");
@@ -24,7 +19,7 @@ class Assignment extends React.Component {
   }
 
   render() {
-    const { assignment, deleteAssignment } = this.props;
+    const { assignment, editAssignment, deleteAssignment } = this.props;
     const gradeStyle = assignment.actual_score ? "score" : "noscore";
     return (
       <div className="assignment-form">
@@ -48,9 +43,10 @@ class Assignment extends React.Component {
           <div className="row">
             <div className="col-sm-1">
               <button
+                id={assignment._id}
                 type="submit"
                 className="btn btn-secondary"
-                onClick={this.editAssignment}
+                onClick={editAssignment}
               >
                 Edit
               </button>

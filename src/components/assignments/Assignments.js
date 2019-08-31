@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Layout from "../shared/Layout";
 import * as storage from "../../helpers/local-storage";
 import { getAssignments, deleteAssignment } from "../../api/assignments";
+import { withRouter } from "react-router";
 
 class Assignments extends Component {
   constructor() {
@@ -14,11 +15,16 @@ class Assignments extends Component {
     };
     this.getAssignments = this.getAssignments.bind(this);
     this.deleteAssignment = this.deleteAssignment.bind(this);
+    this.editAssignment = this.editAssignment.bind(this);
   }
   async componentDidMount() {
     if (this.state.loggedInUser.token) {
       await this.getAssignments();
     }
+  }
+  editAssignment(e) {
+    const { history } = this.props;
+    history.push("/editAssignment/" + e.target.id);
   }
   async deleteAssignment(e) {
     await deleteAssignment(e.target.id);
@@ -38,6 +44,7 @@ class Assignments extends Component {
       return (
         <Assignment
           assignment={assignment}
+          editAssignment={this.editAssignment}
           deleteAssignment={this.deleteAssignment}
           key={id}
         />
@@ -51,4 +58,4 @@ class Assignments extends Component {
     );
   }
 }
-export default Assignments;
+export default withRouter(Assignments);

@@ -10,6 +10,11 @@ class Ungraded extends React.Component {
       max_score: null
     };
     this.saveAssignment = this.saveAssignment.bind(this);
+    this.redirectToProjectLink = this.redirectToProjectLink.bind(this);
+  }
+  redirectToProjectLink() {
+    const { assignment } = this.props;
+    window.location.assign(assignment.project_link);
   }
   setInputValue = ({ target: { name, value } }) => {
     this.setState({
@@ -74,13 +79,13 @@ class Ungraded extends React.Component {
           </div>
           <div class="row">
             <div class="col-sm-9">
-              <a
-                href="#"
+              <button
+                type="button"
+                className="buttonlink"
                 onClick={this.redirectToProjectLink}
-                class="projectLink"
               >
                 Project Link
-              </a>
+              </button>
             </div>
             <div class="col-sm-3">
               <button

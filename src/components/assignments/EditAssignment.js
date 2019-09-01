@@ -76,6 +76,8 @@ class EditAssignment extends Component {
                     <div className="col-sm-12  pull-right">
                       <label htmlFor="projectLink">Project Link</label>
                       <input
+                        type="url"
+                        pattern="http?://.+"
                         className="form-control"
                         id="projectLink"
                         onChange={this.setInputValue}

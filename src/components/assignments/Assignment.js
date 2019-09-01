@@ -9,7 +9,8 @@ class Assignment extends React.Component {
     this.getScore = this.getScore.bind(this);
   }
   redirectToProjectLink() {
-    window.location.assign("http://github.com");
+    const { assignment } = this.props;
+    window.location.assign(assignment.project_link);
   }
   getScore() {
     const { assignment } = this.props;
@@ -27,13 +28,13 @@ class Assignment extends React.Component {
           <div className="col-sm-10">
             <h5>{assignment.title}</h5>
             <div>{assignment.description}</div>
-            <a
-              href="#"
+            <button
+              type="button"
+              className="buttonlink"
               onClick={this.redirectToProjectLink}
-              className="projectLink"
             >
               Project Link
-            </a>
+            </button>
           </div>
           <div className="col-sm-2">
             <div className={gradeStyle}>{this.getScore()}</div>

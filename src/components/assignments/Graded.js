@@ -11,6 +11,7 @@ class Graded extends React.Component {
     };
     this.saveAssignment = this.saveAssignment.bind(this);
     this.setInputValue = this.setInputValue.bind(this);
+    this.redirectToProjectLink = this.redirectToProjectLink.bind(this);
   }
   componentDidMount() {
     if (this.state.actual_score === null) {
@@ -19,6 +20,10 @@ class Graded extends React.Component {
         max_score: this.props.assignment.max_score
       });
     }
+  }
+  redirectToProjectLink() {
+    const { assignment } = this.props;
+    window.location.assign(assignment.project_link);
   }
   setInputValue = ({ target: { name, value } }) => {
     this.setState({
@@ -84,13 +89,13 @@ class Graded extends React.Component {
         </div>
         <div class="row">
           <div class="col-sm-9">
-            <a
-              href="#"
+            <button
+              type="button"
+              className="buttonlink"
               onClick={this.redirectToProjectLink}
-              class="projectLink"
             >
               Project Link
-            </a>
+            </button>
           </div>
           <div class="col-sm-3">
             <button
